@@ -1,10 +1,10 @@
 class Empresa {
     var property nombre
     var cuit
-    var empleados = []
+    const empleados = []
     var saldoEmpresarial
     var property antiguedad
-    var recibosHaberes = [[]]
+    const recibosHaberes = [[]]
 
     method totalSueldoBruto() {
         return empleados.sueldoBruto().sum()
