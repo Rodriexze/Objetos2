@@ -2,9 +2,12 @@ class Empresa {
     var property nombre
     var cuit
     const empleados = []
-    var saldoEmpresarial
-    var property antiguedad
+    var saldoEmpresarial 
     const recibosHaberes = [[]]
+
+    method contratarEmpleado(empleado) {
+        empleados.add(empleado)
+    }
 
     method totalSueldoBruto() {
         return empleados.sueldoBruto().sum()
@@ -19,7 +22,6 @@ class Empresa {
     }
     method liquidarSueldos() {
         self.generarYGuardarReciboHaberes(empleados)
-
         saldoEmpresarial - self.totalSueldoNeto()
     }
 
@@ -37,9 +39,8 @@ class Empleado {
     var direccion
     var estadoCivil
     const fechaNacimineto
-    var sueldoBasico
     const añoIngreso
-    var property salarioBasico
+    var salarioBasico
 
     method antiguedad() {
         return self.añoActual() - añoIngreso
