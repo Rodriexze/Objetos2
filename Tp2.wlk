@@ -30,9 +30,7 @@ class Empresa {
     }
 }
 
-data Fecha = dd | mm | yyyy
-            deriving show
-
+//Utilizar "date" (ver como reacomodar code)
 class Empleado {
 
     var nombre
