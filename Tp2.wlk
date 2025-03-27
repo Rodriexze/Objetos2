@@ -22,7 +22,7 @@ class Empresa {
     }
     method liquidarSueldos() {
         self.generarYGuardarReciboHaberes(empleados)
-        saldoEmpresarial - self.totalSueldoNeto()
+        saldoEmpresarial =- self.totalSueldoNeto()
     }
 
     method generarYGuardarReciboHaberes(listaEmpleados) {
@@ -42,11 +42,11 @@ class Empleado {
     const añoIngreso
     var salarioBasico
 
-    method antiguedad() {
+    method antiguedad() { //ver como hacer con date
         return self.añoActual() - añoIngreso
     }
 
-    method añoActual() {
+    method añoActual() { // corregir usar date
         return 2025
     }
 
