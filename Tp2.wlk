@@ -3,7 +3,7 @@ class Empresa {
     var cuit
     const empleados = []
     var saldoEmpresarial 
-    const recibosHaberes = [[]]
+    const recibosHaberes = [[]] //quiza no va aca
 
     method contratarEmpleado(empleado) {
         empleados.add(empleado)
@@ -32,22 +32,26 @@ class Empresa {
     }
 }
 
-//Utilizar "date" (ver como reacomodar code)
 class Empleado {
 
     var nombre
     var direccion
     var estadoCivil
-    const fechaNacimineto
-    const añoIngreso
+    const fechaNacimineto 
+    const fechaIngreso = new Date()
     var salarioBasico
+    var property horasExtra
 
-    method antiguedad() { //ver como hacer con date
-        return self.añoActual() - añoIngreso
+    method edad() { //no va UML no es un metodo q acceda otra clase
+        return self.fechaActual().year() - fechaNacimineto.year()
     }
 
-    method añoActual() { // corregir usar date
-        return 2025
+    method antiguedad() {
+        return self.fechaActual() - fechaIngreso
+    }
+
+    method fechaActual() {
+        return new Date()
     }
 
     method sueldoBruto() {
@@ -78,18 +82,13 @@ class Empleado {
         return self.sueldoBruto() * 0.10
     }
 
-    method edad(fecha) {
-        return 2025 - fecha.yyyy()
-    }
-
-    method conceptos() {
+    method conceptos() { //ver q onda
         return ["sueldo basico " + self.sueldoBasico(), "retenciones " + self.retenciones(), "obra social " + self.obraSocial(), "aporte jubilatorio " + self.aportesJubilatorio()]
     }
 }
 
 class EmpleadoPermanente inherits Empleado {
     var property fechaFinPlantaTemporal
-    var property horasExtra
     var property cantidadHijos
 
     method salarioFamiliar() {
@@ -115,7 +114,7 @@ class EmpleadoPermanente inherits Empleado {
 
 class EmpleadoTemporal inherits Empleado {
 
-    var property horasExtra
+    var property fechaFinalPlantaTemporal
 
     override method sueldoBruto() {
         return self.sueldoBasico() + 40 * horasExtra
@@ -131,5 +130,13 @@ class EmpleadoTemporal inherits Empleado {
 
     override method porcentajeJubilatorio() {
         return 0.10
+    }
+}
+class ReciboHaberes {
+    const empleados = []
+    var fechaActual new Date()
+
+    method crearReciboHaberes() {
+        
     }
 }
