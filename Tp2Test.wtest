@@ -1,0 +1,25 @@
+import Tp2.*
+
+describe "Empresa y empleados" {
+
+    const empresa = new Empresa(nombre="Techint", cuit="30-12345678-9", saldoEmpresarial=2000000)
+    const nacimientoJuan = new Date(day = 30, month = 6, year = 1973)
+    const hoy = new Date()
+    const empleado1 = new EmpleadoPermanente(nombre="Juan",direccion="calleFalsa123",estadoCivil="casado", fechaNacimineto=nacimientoJuan, salarioBasico=500000, cantidadHijos=2, fechaIngreso=hoy )
+    
+    const fechafinalPlantaTemporalPedro = new Date(day = 20, month = 1, year = 2026)
+    const nacimientoPedro = new Date(day = 1, month = 9, year = 1970)
+
+    const empleado2 = new EmpleadoTemporal(nombre="Pedro",direccion="calleFalsa124",estadoCivil="soltero", fechaNacimineto=nacimientoPedro, salarioBasico=300000, fechaIngreso=hoy,fechaFinalPlantaTemporal=fechafinalPlantaTemporalPedro )
+
+    test "1.1" {
+        empresa.agregarEmpleado(empleado1)
+        empresa.agregarEmpleado(empleado2)
+        empleado2.horasExtra(20)
+        empresa.liquidarSueldos()
+        console.println("Total Sueldos Brutos: " + empresa.totalSueldoBruto())
+        console.println("Total Retenciones: " + empresa.totalRetenciones())
+        console.println("Total Sueldos Netos: " + empresa.totalSueldoNeto())
+		assert.equals(20,empresa.saldoEmpresarial())
+	}
+}
