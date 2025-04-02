@@ -13,8 +13,8 @@ describe "Empresa y empleados" {
     const empleado2 = new EmpleadoTemporal(nombre="Pedro",direccion="calleFalsa124",estadoCivil="soltero", fechaNacimineto=nacimientoPedro, salarioBasico=300000, fechaIngreso=hoy,fechaFinalPlantaTemporal=fechafinalPlantaTemporalPedro )
 
     test "1.1" {
-        empresa.agregarEmpleado(empleado1)
-        empresa.agregarEmpleado(empleado2)
+        empresa.contratarEmpleado(empleado1)
+        empresa.contratarEmpleado(empleado2)
         empleado2.horasExtra(20)
         empresa.liquidarSueldos()
         console.println("Total Sueldos Brutos: " + empresa.totalSueldoBruto())

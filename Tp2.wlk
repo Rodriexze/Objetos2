@@ -4,10 +4,6 @@ class Empresa {
     const empleados = []
     var saldoEmpresarial 
 
-    method agregarEmpleado(empleado) {
-            empleados.add(empleado)
-        }
-
     method contratarEmpleado(empleado) {
         empleados.add(empleado)
     }
@@ -23,6 +19,7 @@ class Empresa {
     method totalRetenciones() {
         return empleados.retenciones().sum()
     }
+
     method liquidarSueldos() {
         ReciboHaberes.crearReciboHaberes()
         saldoEmpresarial =- self.totalSueldoNeto()
@@ -31,7 +28,6 @@ class Empresa {
     method cuit() {
         return cuit
     }
-
 }
 
 class Empleado {
@@ -83,8 +79,8 @@ class Empleado {
         return self.sueldoBruto() * 0.10
     }
 
-    method conceptos() { //ver q onda
-        return ["sueldo basico " + self.sueldoBasico(), "retenciones " + self.retenciones(), "obra social " + self.obraSocial(), "aporte jubilatorio " + self.aportesJubilatorio()]
+    method conceptos(empleado) { //ver q onda
+        return ["sueldo basico " + empleado.sueldoBasico(), "retenciones " + empleado.retenciones(), "obra social " + empleado.obraSocial(), "aporte jubilatorio " + empleado.aportesJubilatorio()]
     }
 
     method nombre() {

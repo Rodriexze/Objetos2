@@ -63,3 +63,6 @@
 {"level":"info","message":"onRequest - completionItem/resolve","timestamp":"2025-04-01T23:44:09.973Z"}
 {"level":"info","message":"onRequest - completionItem/resolve","timestamp":"2025-04-01T23:44:10.607Z"}
 {"level":"info","message":"onRequest - completionItem/resolve","timestamp":"2025-04-01T23:44:11.140Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":105,"timestamp":"2025-04-02T00:57:54.131Z"}
+{"level":"info","message":"onRequest - WORKSPACE_URI:file:///d%3A/Facultad%202025/Objetos2","timestamp":"2025-04-02T00:57:54.133Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":102,"timestamp":"2025-04-02T00:58:09.403Z"}
