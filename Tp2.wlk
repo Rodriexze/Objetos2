@@ -1,9 +1,12 @@
 class Empresa {
     var property nombre
-    var cuit
+    const cuit
     const empleados = []
     var saldoEmpresarial 
-    const recibosHaberes = [[]] //quiza no va aca
+
+    method agregarEmpleado(empleado) {
+            empleados.add(empleado)
+        }
 
     method contratarEmpleado(empleado) {
         empleados.add(empleado)
@@ -21,26 +24,24 @@ class Empresa {
         return empleados.retenciones().sum()
     }
     method liquidarSueldos() {
-        self.generarYGuardarReciboHaberes(empleados)
+        ReciboHaberes.crearReciboHaberes()
         saldoEmpresarial =- self.totalSueldoNeto()
     }
 
-    method generarYGuardarReciboHaberes(listaEmpleados) {
-        listaEmpleados.forEach { elemento => elemento.nombre().direccion().fechaActual().sueldoBruto().sueldoNeto().conceptos()
-                                recibosHaberes.add()
-        }
+    method cuit() {
+        return cuit
     }
+
 }
 
 class Empleado {
 
-    var nombre
-    var direccion
-    var estadoCivil
-    const fechaNacimineto 
-    const fechaIngreso = new Date()
-    var salarioBasico
-    var property horasExtra
+    var property nombre
+    var property direccion
+    var property estadoCivil
+    var property fechaNacimineto 
+    var property fechaIngreso
+    var property salarioBasico
 
     method edad() { //no va UML no es un metodo q acceda otra clase
         return self.fechaActual().year() - fechaNacimineto.year()
@@ -85,10 +86,25 @@ class Empleado {
     method conceptos() { //ver q onda
         return ["sueldo basico " + self.sueldoBasico(), "retenciones " + self.retenciones(), "obra social " + self.obraSocial(), "aporte jubilatorio " + self.aportesJubilatorio()]
     }
+
+    method nombre() {
+        return nombre
+    }
+
+    method direccion() {
+        return direccion
+    }
+
+    method estadoCivil() {
+        return estadoCivil
+    }
+
+    method salarioBasico() {
+        return salarioBasico
+    }
 }
 
 class EmpleadoPermanente inherits Empleado {
-    var property fechaFinPlantaTemporal
     var property cantidadHijos
 
     method salarioFamiliar() {
@@ -115,6 +131,7 @@ class EmpleadoPermanente inherits Empleado {
 class EmpleadoTemporal inherits Empleado {
 
     var property fechaFinalPlantaTemporal
+    var property horasExtra = 0
 
     override method sueldoBruto() {
         return self.sueldoBasico() + 40 * horasExtra
@@ -134,9 +151,14 @@ class EmpleadoTemporal inherits Empleado {
 }
 class ReciboHaberes {
     const empleados = []
-    var fechaActual new Date()
+    var fechaActual = new Date()
+    const recibosHaberes = []
 
-    method crearReciboHaberes() {
-        
+    method crearReciboHaberes() { //podria tener estructura pero no me ideo como ej lista de empleados y que cada empleado sea una lista con
+        empleados.forEach { elemento => elemento.nombre().direccion().fechaActual().sueldoBruto().sueldoNeto().conceptos()
+                             recibosHaberes.add()}
     }
 }
+
+class Soltero {}
+class Casado {}
