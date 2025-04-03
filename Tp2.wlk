@@ -79,10 +79,6 @@ class Empleado {
         return self.sueldoBruto() * 0.10
     }
 
-    method conceptos(empleado) { //ver q onda
-        return ["sueldo basico " + empleado.sueldoBasico(), "retenciones " + empleado.retenciones(), "obra social " + empleado.obraSocial(), "aporte jubilatorio " + empleado.aportesJubilatorio()]
-    }
-
     method nombre() {
         return nombre
     }
@@ -98,6 +94,17 @@ class Empleado {
     method salarioBasico() {
         return salarioBasico
     }
+
+    method conceptos() {
+        return ["sueldo basico " + self.sueldoBasico(), "retenciones " + self.retenciones(), "obra social " + self.obraSocial(), "aporte jubilatorio " + self.aportesJubilatorio()]
+    }
+
+    method desgloceConceptos() {
+        return ["Retenciones : " + self.retenciones(),
+                "Obra Social : " + self.obraSocial(),
+                "Aportes Jubilatorios : " + self.aportesJubilatorio()
+                ]
+    }
 }
 
 class EmpleadoPermanente inherits Empleado {
@@ -112,7 +119,11 @@ class EmpleadoPermanente inherits Empleado {
     }
 
     override method retenciones() {
-        return super() + 20 * cantidadHijos + self.aportesJubilatorio()
+        return super() + self.asignacionFamiliar() + self.aportesJubilatorio()
+    }
+
+    method asignacionFamiliar() {
+        return 20 * cantidadHijos 
     }
 
     override method sueldoBruto() {
@@ -121,6 +132,10 @@ class EmpleadoPermanente inherits Empleado {
 
     override method porcentajeJubilatorio() {
         return 0.15
+    }
+
+    override method desgloceConceptos() {
+        return super() + [ "Asignacion Familiar : " + self.asignacionFamiliar() ]
     }
 }
 
@@ -134,7 +149,11 @@ class EmpleadoTemporal inherits Empleado {
     }
 
     override method retenciones() {
-        return super() + self.aportesJubilatorio() + 5 * horasExtra
+        return super() + self.aportesJubilatorio() + self.conceptoHorasExtra()
+    }
+
+    method conceptoHorasExtra() {
+        return 5 * horasExtra
     }
 
     override method aportesJubilatorio() {
@@ -144,17 +163,27 @@ class EmpleadoTemporal inherits Empleado {
     override method porcentajeJubilatorio() {
         return 0.10
     }
+
+    override method desgloceConceptos() {
+        return super() + ["Horas Extra : " + self.conceptoHorasExtra()]
+    }
 }
 class ReciboHaberes {
     const empleados = []
     var fechaActual = new Date()
     const recibosHaberes = []
 
-    method crearReciboHaberes() { //podria tener estructura pero no me ideo como ej lista de empleados y que cada empleado sea una lista con
-        empleados.forEach { elemento => elemento.nombre().direccion().fechaActual().sueldoBruto().sueldoNeto().conceptos()
-                             recibosHaberes.add()}
+    method crearReciboHaberes(empleado) { // lo hace con uno despues hacerlo para toda la lista
+        return [
+        "Nombre : " + empleado.nombre(),
+        "Dirección: " + empleado.direccion(),
+        "Fecha de Emisión: " + fechaActual,
+        "Sueldo Bruto: " + empleado.calcularSueldoBruto(),
+        "Sueldo Neto: " + empleado.calcularSueldoNeto()
+        ]
     }
-}
 
-class Soltero {}
-class Casado {}
+    
+
+
+}
